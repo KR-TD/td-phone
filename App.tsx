@@ -25,10 +25,18 @@ function App() {
 
 function AppContent() {
   const safeAreaInsets = useSafeAreaInsets();
+  const injectedJavaScript = `
+    window.isApp = true;
+    localStorage.setItem('isApp', 'true');
+  `;
 
   return (
     <View style={styles.container}>
-      <WebView source={{ uri: 'https://haru2end.com' }} style={styles.webview} />
+      <WebView
+        source={{ uri: 'https://haru2end.com' }}
+        style={styles.webview}
+        injectedJavaScript={injectedJavaScript}
+      />
     </View>
   );
 }
